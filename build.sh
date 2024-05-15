@@ -33,7 +33,7 @@ if [ "$AUTOBUILD" = "yes" ]; then
 
 else
     echo "AUTOBUILD is not set to 'yes'. Skipping automatic build."
+	# keep the container running
+    tail -f /dev/null
 fi
 
-# keep the container running 
-exec "$@"
