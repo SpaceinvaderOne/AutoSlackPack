@@ -25,15 +25,12 @@ RUN slackpkg clean-system || true && \
     rm -rf /var/cache/packages/* /var/lib/slackpkg/* /usr/share/man/* /usr/share/info/* /usr/share/doc/* && \
     rm -rf /tmp/* /var/tmp/*
 
-# make app directory & copy slackbuild script
-RUN mkdir -p /app
-COPY build.sh /app/build.sh
+# copy the build script 
+COPY build.sh /usr/local/bin/build.sh
 
-# working dir
-WORKDIR /app
+# make the script executable
+RUN chmod +x /usr/local/bin/build.sh
 
-# make executable
-RUN chmod +x /app/build.sh
+# set  entrypoint 
+ENTRYPOINT ["/usr/local/bin/build.sh"]
 
-# set the entrypoint 
-ENTRYPOINT ["/app/build.sh"]
