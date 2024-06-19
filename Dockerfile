@@ -13,7 +13,7 @@ RUN slackpkg update gpg && \
     slackpkg install wget curl
 
 RUN slackpkg install binutils gcc-g++ libffi glibc libunistring elfutils guile make gc kernel-headers gcc && \
-    slackpkg install cyrus-sasl brotli nghttp2 openssl libxml2 autoconf automake cmake pkg-config git gdb doxygen cppcheck clang && \
+    slackpkg install cyrus-sasl brotli nghttp2 openssl libxml2 autoconf automake cmake pkg-config git gdb doxygen cppcheck clang ca-certificates && \
     slackpkg install flex bison perl python3 python-pip m4 zlib libtool tcl tk gettext ncurses readline sqlite expat libpng freetype fontconfig libjpeg-turbo libtiff harfbuzz cairo pango gdk-pixbuf && \
     slackpkg install atk at-spi2-atk gtk+3 qt5 alsa-lib libX11 libXau libXdmcp libxcb libXext libXrender libXi libXtst libXcomposite libXcursor libXdamage libXfixes libXinerama libxkbcommon libXrandr libXres libXScrnSaver libXv libXvMC libXxf86vm libdrm mesa vulkan-sdk libarchive && \
     slackpkg install flac libogg libvorbis libtheora speex opus x264 x265 ffmpeg boost icu4c json-c yaml-cpp libuv libevent && \
