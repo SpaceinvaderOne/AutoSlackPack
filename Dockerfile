@@ -20,6 +20,9 @@ RUN slackpkg install binutils gcc-g++ libffi glibc libunistring elfutils guile m
     slackpkg install mariadb-client postgresql-libs unixODBC curl libcurl nmap samba xz lzma gzip bzip2 lzip lzop zstd lz4 imagemagick graphicsmagick gnutls nettle p11-kit dbus glib2 libcap nghttp2 pcre pcre2 && \
     slackpkg install coreutils fileutils findutils gawk sed grep gettext util-linux cmake meson ninja ncurses ncurses-devel zlib zlib-devel openssl openssl-devel mesa mesa-devel libX11 libX11-devel libXext libXext-devel libxcb libxcb-devel libXau libXau-devel libXdmcp libXdmcp-devel
 
+# set certificate directory for git
+RUN git config --global http.sslCAinfo /etc/ssl/certs/ca-certificates.crt
+
 # cleanup
 RUN slackpkg clean-system || true && \
     rm -rf /var/cache/packages/* /var/lib/slackpkg/* /usr/share/man/* /usr/share/info/* /usr/share/doc/* && \
