@@ -148,7 +148,7 @@ zlib \
 zlib-devel \
 zstd
 
-RUN slackpkg install openssl openssl-devel
+RUN slackpkg install openssl
 
 # cleanup
 RUN slackpkg clean-system || true && \
