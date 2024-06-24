@@ -8,145 +8,149 @@ ENV TERM=xterm \
     STDOUT=on
 
 # update and install packages
-RUN slackpkg update gpg && \
-    slackpkg update
+RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
+    sed -i "s/^DIALOG=.*/DIALOG=off/" "$CONF_FILE" && \
+    sed -i "s/^BATCH=.*/BATCH=on/" "$CONF_FILE" && \
+    sed -i "s/^DEFAULT_ANSWER=.*/DEFAULT_ANSWER=y/" "$CONF_FILE" && \
+    slackpkg update <<< y && \
+    slackpkg update gpg
 
 RUN slackpkg install alsa-lib \
-at-spi2-atk \
-atk \
-autoconf \
-automake \
-binutils \
-bison \
-boost \
-brotli \
-bzip2 \
-ca-certificates \
-cairo \
-clang \
-cmake \
-coreutils \
-cppcheck \
-curl \
-cyrus-sasl \
-dbus \
-doxygen \
-elfutils \
-expat \
-ffmpeg \
-fileutils \
-findutils \
-flac \
-flex \
-fontconfig \
-freetype \
-gawk \
-gc \
-gcc \
-gcc-g++ \
-gdb \
-gdk-pixbuf \
-gettext \
-git \
-glib2 \
-glibc \
-gnutls \
-graphicsmagick \
-grep \
-gtk+3 \
-guile \
-gzip \
-harfbuzz \
-icu4c \
-imagemagick \
-json-c \
-kernel-headers \
-libX11 \
-libX11-devel \
-libXScrnSaver \
-libXau \
-libXau-devel \
-libXcomposite \
-libXcursor \
-libXdamage \
-libXdmcp \
-libXdmcp-devel \
-libXext \
-libXext-devel \
-libXfixes \
-libXi \
-libXinerama \
-libXrandr \
-libXrender \
-libXres \
-libXtst \
-libXv \
-libXvMC \
-libXxf86vm \
-libarchive \
-libcap \
-libcurl \
-libdrm \
-libevent \
-libffi \
-libjpeg-turbo \
-libogg \
-libpng \
-libtheora \
-libtiff \
-libtool \
-libunistring \
-libuv \
-libvorbis \
-libxcb \
-libxcb-devel \
-libxkbcommon \
-libxml2 \
-lz4 \
-lzip \
-lzma \
-lzop \
-m4 \
-make \
-mariadb-client \
-mesa \
-mesa-devel \
-meson \
-ncurses \
-ncurses-devel \
-nettle \
-nghttp2 \
-ninja \
-nmap \
-opus \
-p11-kit \
-pango \
-pcre \
-pcre2 \
-perl \
-pkg-config \
-postgresql-libs \
-python-pip \
-python3 \
-qt5 \
-readline \
-samba \
-sed \
-speex \
-sqlite \
-tcl \
-tk \
-unixODBC \
-util-linux \
-vulkan-sdk \
-wget \
-x264 \
-x265 \
-xz \
-yaml-cpp \
-zlib \
-zlib-devel \
-zstd
+    at-spi2-atk \
+    atk \
+    autoconf \
+    automake \
+    binutils \
+    bison \
+    boost \
+    brotli \
+    bzip2 \
+    ca-certificates \
+    cairo \
+    clang \
+    cmake \
+    coreutils \
+    cppcheck \
+    curl \
+    cyrus-sasl \
+    dbus \
+    doxygen \
+    elfutils \
+    expat \
+    ffmpeg \
+    fileutils \
+    findutils \
+    flac \
+    flex \
+    fontconfig \
+    freetype \
+    gawk \
+    gc \
+    gcc \
+    gcc-g++ \
+    gdb \
+    gdk-pixbuf \
+    gettext \
+    git \
+    glib2 \
+    glibc \
+    gnutls \
+    graphicsmagick \
+    grep \
+    gtk+3 \
+    guile \
+    gzip \
+    harfbuzz \
+    icu4c \
+    imagemagick \
+    json-c \
+    kernel-headers \
+    libX11 \
+    libX11-devel \
+    libXScrnSaver \
+    libXau \
+    libXau-devel \
+    libXcomposite \
+    libXcursor \
+    libXdamage \
+    libXdmcp \
+    libXdmcp-devel \
+    libXext \
+    libXext-devel \
+    libXfixes \
+    libXi \
+    libXinerama \
+    libXrandr \
+    libXrender \
+    libXres \
+    libXtst \
+    libXv \
+    libXvMC \
+    libXxf86vm \
+    libarchive \
+    libcap \
+    libcurl \
+    libdrm \
+    libevent \
+    libffi \
+    libjpeg-turbo \
+    libogg \
+    libpng \
+    libtheora \
+    libtiff \
+    libtool \
+    libunistring \
+    libuv \
+    libvorbis \
+    libxcb \
+    libxcb-devel \
+    libxkbcommon \
+    libxml2 \
+    lz4 \
+    lzip \
+    lzma \
+    lzop \
+    m4 \
+    make \
+    mariadb-client \
+    mesa \
+    mesa-devel \
+    meson \
+    ncurses \
+    ncurses-devel \
+    nettle \
+    nghttp2 \
+    ninja \
+    nmap \
+    opus \
+    p11-kit \
+    pango \
+    pcre \
+    pcre2 \
+    perl \
+    pkg-config \
+    postgresql-libs \
+    python-pip \
+    python3 \
+    qt5 \
+    readline \
+    samba \
+    sed \
+    speex \
+    sqlite \
+    tcl \
+    tk \
+    unixODBC \
+    util-linux \
+    vulkan-sdk \
+    wget \
+    x264 \
+    x265 \
+    xz \
+    yaml-cpp \
+    zlib \
+    zlib-devel \
+    zstd
 
 RUN slackpkg install openssl
 
