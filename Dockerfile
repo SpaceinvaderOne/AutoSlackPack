@@ -118,8 +118,6 @@ nettle \
 nghttp2 \
 ninja \
 nmap \
-openssl \
-openssl-devel \
 opus \
 p11-kit \
 pango \
@@ -149,6 +147,8 @@ yaml-cpp \
 zlib \
 zlib-devel \
 zstd
+
+RUN slackpkg install openssl openssl-devel
 
 # cleanup
 RUN slackpkg clean-system || true && \
