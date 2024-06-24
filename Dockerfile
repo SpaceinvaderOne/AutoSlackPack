@@ -9,7 +9,7 @@ ENV TERM=xterm \
 
 # update and install packages
 RUN slackpkg update gpg && \
-    slackpkg update && 
+    slackpkg update
 
 RUN slackpkg install alsa-lib \
 at-spi2-atk \
