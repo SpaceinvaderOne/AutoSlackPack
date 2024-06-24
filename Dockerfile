@@ -9,16 +9,146 @@ ENV TERM=xterm \
 
 # update and install packages
 RUN slackpkg update gpg && \
-    slackpkg update && \
-    slackpkg install wget curl
+    slackpkg update && 
 
-RUN slackpkg install binutils gcc-g++ libffi glibc libunistring elfutils guile make gc kernel-headers gcc && \
-    slackpkg install clang ca-certificates cyrus-sasl brotli nghttp2 openssl openssl-devel libxml2 autoconf automake cmake pkg-config git gdb doxygen cppcheck && \
-    slackpkg install flex bison perl python3 python-pip m4 libtool tcl tk gettext readline sqlite expat libpng freetype fontconfig libjpeg-turbo libtiff harfbuzz cairo pango gdk-pixbuf && \
-    slackpkg install atk at-spi2-atk gtk+3 qt5 alsa-lib libXrender libXi libXtst libXcomposite libXcursor libXdamage libXfixes libXinerama libxkbcommon libXrandr libXres libXScrnSaver libXv libXvMC libXxf86vm libdrm vulkan-sdk libarchive && \
-    slackpkg install flac libogg libvorbis libtheora speex opus x264 x265 ffmpeg boost icu4c json-c yaml-cpp libuv libevent && \
-    slackpkg install mariadb-client postgresql-libs unixODBC curl libcurl nmap samba xz lzma gzip bzip2 lzip lzop zstd lz4 imagemagick graphicsmagick gnutls nettle p11-kit dbus glib2 libcap pcre pcre2 && \
-    slackpkg install coreutils fileutils findutils gawk sed grep util-linux meson ninja ncurses ncurses-devel zlib zlib-devel mesa mesa-devel libX11 libX11-devel libXext libXext-devel libxcb libxcb-devel libXau libXau-devel libXdmcp libXdmcp-devel
+RUN slackpkg install alsa-lib \
+at-spi2-atk \
+atk \
+autoconf \
+automake \
+binutils \
+bison \
+boost \
+brotli \
+bzip2 \
+ca-certificates \
+cairo \
+clang \
+cmake \
+coreutils \
+cppcheck \
+curl \
+cyrus-sasl \
+dbus \
+doxygen \
+elfutils \
+expat \
+ffmpeg \
+fileutils \
+findutils \
+flac \
+flex \
+fontconfig \
+freetype \
+gawk \
+gc \
+gcc \
+gcc-g++ \
+gdb \
+gdk-pixbuf \
+gettext \
+git \
+glib2 \
+glibc \
+gnutls \
+graphicsmagick \
+grep \
+gtk+3 \
+guile \
+gzip \
+harfbuzz \
+icu4c \
+imagemagick \
+json-c \
+kernel-headers \
+libX11 \
+libX11-devel \
+libXScrnSaver \
+libXau \
+libXau-devel \
+libXcomposite \
+libXcursor \
+libXdamage \
+libXdmcp \
+libXdmcp-devel \
+libXext \
+libXext-devel \
+libXfixes \
+libXi \
+libXinerama \
+libXrandr \
+libXrender \
+libXres \
+libXtst \
+libXv \
+libXvMC \
+libXxf86vm \
+libarchive \
+libcap \
+libcurl \
+libdrm \
+libevent \
+libffi \
+libjpeg-turbo \
+libogg \
+libpng \
+libtheora \
+libtiff \
+libtool \
+libunistring \
+libuv \
+libvorbis \
+libxcb \
+libxcb-devel \
+libxkbcommon \
+libxml2 \
+lz4 \
+lzip \
+lzma \
+lzop \
+m4 \
+make \
+mariadb-client \
+mesa \
+mesa-devel \
+meson \
+ncurses \
+ncurses-devel \
+nettle \
+nghttp2 \
+ninja \
+nmap \
+openssl \
+openssl-devel \
+opus \
+p11-kit \
+pango \
+pcre \
+pcre2 \
+perl \
+pkg-config \
+postgresql-libs \
+python-pip \
+python3 \
+qt5 \
+readline \
+samba \
+sed \
+speex \
+sqlite \
+tcl \
+tk \
+unixODBC \
+util-linux \
+vulkan-sdk \
+wget \
+x264 \
+x265 \
+xz \
+yaml-cpp \
+zlib \
+zlib-devel \
+zstd
 
 # cleanup
 RUN slackpkg clean-system || true && \
