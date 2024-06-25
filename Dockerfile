@@ -165,6 +165,9 @@ COPY build.sh /usr/local/bin/build.sh
 # make the script executable
 RUN chmod +x /usr/local/bin/build.sh
 
+RUN slackpkg reinstall openssl
+
+
 # set  entrypoint 
 ENTRYPOINT ["/usr/local/bin/build.sh"]
 
