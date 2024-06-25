@@ -151,6 +151,10 @@ RUN slackpkg install alsa-lib \
     zlib \
     zlib-devel \
     zstd
+    
+# github, curl, and wget give ssl errors unless openssl is reinstalled. For some reason, simply installing doesn't work.
+RUN slackpkg install openssl
+RUN slackpkg reinstall openssl
 
 # cleanup
 RUN slackpkg clean-system || true && \
@@ -162,9 +166,6 @@ COPY build.sh /usr/local/bin/build.sh
 
 # make the script executable
 RUN chmod +x /usr/local/bin/build.sh
-
-RUN slackpkg install openssl
-
 
 # set  entrypoint 
 ENTRYPOINT ["/usr/local/bin/build.sh"]
