@@ -13,8 +13,9 @@ RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
     sed -i "s/^BATCH=.*/BATCH=on/" "$CONF_FILE" && \
     sed -i "s/^DEFAULT_ANSWER=.*/DEFAULT_ANSWER=y/" "$CONF_FILE" && \
     slackpkg update <<< y && \
-    slackpkg update gpg <<< y
-
+    slackpkg update gpg <<< y && \
+    slackpkg install ca-certificates && \
+    slackpkg install openssl
 RUN slackpkg install alsa-lib \
     at-spi2-atk \
     atk \
@@ -25,7 +26,6 @@ RUN slackpkg install alsa-lib \
     boost \
     brotli \
     bzip2 \
-    ca-certificates \
     cairo \
     clang \
     cmake \
@@ -152,7 +152,7 @@ RUN slackpkg install alsa-lib \
     zlib-devel \
     zstd
 
-RUN slackpkg install openssl
+
 
 # cleanup
 RUN slackpkg clean-system || true && \
