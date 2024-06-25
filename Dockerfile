@@ -15,7 +15,7 @@ RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
     slackpkg update <<< y && \
     slackpkg update gpg <<< y && \
     slackpkg install ca-certificates && \
-    slackpkg install openssl
+    update-ca-certificates
 RUN slackpkg install alsa-lib \
     at-spi2-atk \
     atk \
@@ -152,7 +152,7 @@ RUN slackpkg install alsa-lib \
     zlib-devel \
     zstd
 
-
+RUN slackpkg install openssl
 
 # cleanup
 RUN slackpkg clean-system || true && \
