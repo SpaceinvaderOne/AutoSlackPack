@@ -152,8 +152,6 @@ RUN slackpkg install alsa-lib \
     zlib-devel \
     zstd
 
-RUN slackpkg install openssl
-
 # cleanup
 RUN slackpkg clean-system || true && \
     rm -rf /var/cache/packages/* /var/lib/slackpkg/* /usr/share/man/* /usr/share/info/* /usr/share/doc/* && \
@@ -165,7 +163,7 @@ COPY build.sh /usr/local/bin/build.sh
 # make the script executable
 RUN chmod +x /usr/local/bin/build.sh
 
-RUN slackpkg reinstall openssl
+RUN slackpkg install openssl
 
 
 # set  entrypoint 
