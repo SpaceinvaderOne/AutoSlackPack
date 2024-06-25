@@ -13,7 +13,7 @@ RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
     sed -i "s/^BATCH=.*/BATCH=on/" "$CONF_FILE" && \
     sed -i "s/^DEFAULT_ANSWER=.*/DEFAULT_ANSWER=y/" "$CONF_FILE" && \
     slackpkg update <<< y && \
-    slackpkg update gpg
+    slackpkg update gpg <<< y
 
 RUN slackpkg install alsa-lib \
     at-spi2-atk \
