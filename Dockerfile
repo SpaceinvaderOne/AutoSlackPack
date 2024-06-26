@@ -135,6 +135,7 @@ RUN slackpkg install alsa-lib \
     python3 \
     qt5 \
     readline \
+    rsync \
     samba \
     sed \
     speex \
