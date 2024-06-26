@@ -148,6 +148,7 @@ RUN slackpkg install alsa-lib \
     wget \
     x264 \
     x265 \
+    xxHash \
     xz \
     yaml-cpp \
     zlib \
