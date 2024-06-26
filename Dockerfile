@@ -116,6 +116,7 @@ RUN slackpkg install alsa-lib \
     mesa \
     mesa-devel \
     meson \
+    nano \
     ncurses \
     ncurses-devel \
     nettle \
