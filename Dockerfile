@@ -159,7 +159,9 @@ RUN slackpkg install alsa-lib \
     yaml-cpp \
     zlib \
     zlib-devel \
-    zstd
+    zstd \
+    libgcrypt \
+    libgpg-error
 
 # github, curl, and wget give ssl errors unless openssl is reinstalled. For some reason, simply installing doesn't work.
 RUN slackpkg install openssl
