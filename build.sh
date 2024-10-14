@@ -11,7 +11,7 @@ if [ "$AUTOBUILD" = "yes" ]; then
     cd /app
 
     # download the SlackBuild 
-    wget --no-check-certificate -O slackbuild.tar.gz "$SLACKBUILD_DOWNLOAD"
+    wget -O slackbuild.tar.gz "$SLACKBUILD_DOWNLOAD"
 
     # process the file
     SLACKBUILD_DIR=$(tar -tzf slackbuild.tar.gz | head -1 | cut -f1 -d"/")
@@ -22,7 +22,7 @@ if [ "$AUTOBUILD" = "yes" ]; then
     cd "$SLACKBUILD_DIR"
 
     # download source into the directory
-    wget --no-check-certificate "$SOURCE_DOWNLOAD"
+    wget "$SOURCE_DOWNLOAD"
 
     # make executable and run the SlackBuild script
     chmod +x *.SlackBuild

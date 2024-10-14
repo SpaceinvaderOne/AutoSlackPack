@@ -8,17 +8,156 @@ ENV TERM=xterm \
     STDOUT=on
 
 # update and install packages
-RUN slackpkg update gpg && \
-    slackpkg update && \
-    slackpkg install wget curl
-
-RUN slackpkg install binutils gcc-g++ libffi glibc libunistring elfutils guile make gc kernel-headers gcc && \
-    slackpkg install cyrus-sasl brotli nghttp2 openssl libxml2 autoconf automake cmake pkg-config git gdb doxygen cppcheck clang ca-certificates && \
-    slackpkg install flex bison perl python3 python-pip m4 zlib libtool tcl tk gettext ncurses readline sqlite expat libpng freetype fontconfig libjpeg-turbo libtiff harfbuzz cairo pango gdk-pixbuf && \
-    slackpkg install atk at-spi2-atk gtk+3 qt5 alsa-lib libX11 libXau libXdmcp libxcb libXext libXrender libXi libXtst libXcomposite libXcursor libXdamage libXfixes libXinerama libxkbcommon libXrandr libXres libXScrnSaver libXv libXvMC libXxf86vm libdrm mesa vulkan-sdk libarchive && \
-    slackpkg install flac libogg libvorbis libtheora speex opus x264 x265 ffmpeg boost icu4c json-c yaml-cpp libuv libevent && \
-    slackpkg install mariadb-client postgresql-libs unixODBC curl libcurl nmap samba xz lzma gzip bzip2 lzip lzop zstd lz4 imagemagick graphicsmagick gnutls nettle p11-kit dbus glib2 libcap nghttp2 pcre pcre2 && \
-    slackpkg install nano coreutils fileutils findutils gawk sed grep gettext util-linux cmake meson ninja ncurses ncurses-devel zlib zlib-devel openssl openssl-devel mesa mesa-devel libX11 libX11-devel libXext libXext-devel libxcb libxcb-devel libXau libXau-devel libXdmcp libXdmcp-devel
+RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
+    sed -i "s/^DIALOG=.*/DIALOG=off/" "$CONF_FILE" && \
+    sed -i "s/^BATCH=.*/BATCH=on/" "$CONF_FILE" && \
+    sed -i "s/^DEFAULT_ANSWER=.*/DEFAULT_ANSWER=y/" "$CONF_FILE" && \
+    slackpkg update <<< y && \
+    slackpkg update gpg <<< y && \
+    slackpkg install ca-certificates && \
+    update-ca-certificates
+RUN slackpkg install alsa-lib \
+    at-spi2-atk \
+    atk \
+    autoconf \
+    automake \
+    binutils \
+    bison \
+    boost \
+    brotli \
+    bzip2 \
+    cairo \
+    clang \
+    cmake \
+    coreutils \
+    cppcheck \
+    curl \
+    cyrus-sasl \
+    dbus \
+    doxygen \
+    elfutils \
+    expat \
+    ffmpeg \
+    fileutils \
+    findutils \
+    flac \
+    flex \
+    fontconfig \
+    freetype \
+    gawk \
+    gc \
+    gcc \
+    gcc-g++ \
+    gdb \
+    gdk-pixbuf \
+    gettext \
+    git \
+    glib2 \
+    glibc \
+    gnutls \
+    graphicsmagick \
+    grep \
+    gtk+3 \
+    guile \
+    gzip \
+    harfbuzz \
+    icu4c \
+    imagemagick \
+    json-c \
+    kernel-headers \
+    libX11 \
+    libX11-devel \
+    libXScrnSaver \
+    libXau \
+    libXau-devel \
+    libXcomposite \
+    libXcursor \
+    libXdamage \
+    libXdmcp \
+    libXdmcp-devel \
+    libXext \
+    libXext-devel \
+    libXfixes \
+    libXi \
+    libXinerama \
+    libXrandr \
+    libXrender \
+    libXres \
+    libXtst \
+    libXv \
+    libXvMC \
+    libXxf86vm \
+    libarchive \
+    libcap \
+    libcurl \
+    libdrm \
+    libevent \
+    libffi \
+    libjpeg-turbo \
+    libogg \
+    libpng \
+    libtheora \
+    libtiff \
+    libtool \
+    libunistring \
+    libuv \
+    libvorbis \
+    libxcb \
+    libxcb-devel \
+    libxkbcommon \
+    libxml2 \
+    lz4 \
+    lzip \
+    lzma \
+    lzop \
+    m4 \
+    make \
+    mariadb-client \
+    mesa \
+    mesa-devel \
+    meson \
+    nano \
+    ncurses \
+    ncurses-devel \
+    nettle \
+    nghttp2 \
+    ninja \
+    nmap \
+    opus \
+    p11-kit \
+    pango \
+    pcre \
+    pcre2 \
+    perl \
+    pkg-config \
+    postgresql-libs \
+    python-pip \
+    python3 \
+    qt5 \
+    readline \
+    rsync \
+    samba \
+    sed \
+    speex \
+    sqlite \
+    tcl \
+    tk \
+    unixODBC \
+    util-linux \
+    vulkan-sdk \
+    wget \
+    x264 \
+    x265 \
+    xxHash \
+    xz \
+    yaml-cpp \
+    zlib \
+    zlib-devel \
+    zstd
+    
+# github, curl, and wget give ssl errors unless openssl is reinstalled. For some reason, simply installing doesn't work.
+RUN slackpkg install openssl
+RUN slackpkg reinstall openssl
 
 # cleanup
 RUN slackpkg clean-system || true && \
