@@ -16,6 +16,8 @@ RUN CONF_FILE="/etc/slackpkg/slackpkg.conf" && \
     slackpkg update gpg <<< y && \
     slackpkg install ca-certificates && \
     update-ca-certificates
+
+# install required packages for xmlstarlet and development tools
 RUN slackpkg install alsa-lib \
     at-spi2-atk \
     atk \
@@ -36,6 +38,7 @@ RUN slackpkg install alsa-lib \
     dbus \
     doxygen \
     elfutils \
+    eudev \
     expat \
     ffmpeg \
     fileutils \
@@ -106,6 +109,9 @@ RUN slackpkg install alsa-lib \
     libxcb-devel \
     libxkbcommon \
     libxml2 \
+    libxml2-devel \
+    libxslt \
+    libxslt-devel \
     lz4 \
     lzip \
     lzma \
@@ -154,7 +160,7 @@ RUN slackpkg install alsa-lib \
     zlib \
     zlib-devel \
     zstd
-    
+
 # github, curl, and wget give ssl errors unless openssl is reinstalled. For some reason, simply installing doesn't work.
 RUN slackpkg install openssl
 RUN slackpkg reinstall openssl
@@ -170,6 +176,5 @@ COPY build.sh /usr/local/bin/build.sh
 # make the script executable
 RUN chmod +x /usr/local/bin/build.sh
 
-# set  entrypoint 
+# set entrypoint 
 ENTRYPOINT ["/usr/local/bin/build.sh"]
-
